@@ -42,33 +42,55 @@
                     <div class="col-md-9 col-lg-10 col-sm-8 ">
                         <!-- CHAPTER 01 Start =========================================================================================================== -->
                         <div id="chapter1" v-show="showChapter(0)">
-                            <h4 class="text-primary font-weight-bold"># {{chapterTextArray[0]}}</h4>
-                            <p class="text-dark">
-                                單純渲染文字
-                            </p>
-                            <div class="card m-2">
-                                <div class="card-header">
-                                    <h5>Demo</h5>
-                                </div>
+                            <h4 class="font-weight-bold"># {{chapterTextArray[0]}}</h4>
+                            <div class="card m-3">
                                 <div class="card-body">
-                                    <div class="col-sm-12 col-md-12 col-lg-8 form-group row">
-                                        <label for="vTextDemo" class="col-sm-4 col-form-label">輸入文字:</label>
-                                        <div class="col-sm-8">
-                                            <input id="vTextDemo" class="form-control" v-model="vTextDemo" type="text"
-                                                   placeholder="Enter Word To Show" />
-                                        </div>
-                                    </div>
-                                    <hr />
-                                    <h6>Show Message in { } : <span class="text-danger">{{vTextDemo}}</span></h6>
-                                    <h6>Show Message in v-text : <span class="text-danger" v-text="vTextDemo"></span></h6>
+                                    <h6 class="font-weight-bold">單純渲染文字</h6>
+                                    <p>
+                                        渲染文字有兩中方是,一種是直接用雙大括弧呼叫參數,另一種則是加上 v-text。差異在大括弧在 js 執行失敗時會出現大括弧與裡面的JS。
+                                    </p>
                                 </div>
                             </div>
-                            <div class="card m-2">
+                            <div class="card m-3">
                                 <div class="card-header">
-                                    <h5>HTML Code</h5>
+                                    <ul class="nav nav-tabs card-header-tabs">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="vTextDemo-tab" data-toggle="tab" href="#vTextDemoCard" role="tab"
+                                               aria-controls="vTextDemoCard" aria-selected="true">
+                                                Demo
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link " id="vTextHtml-tab" data-toggle="tab" href="#vTextHtmlCard" role="tab"
+                                               aria-controls="vTextHtmlCard" aria-selected="true">
+                                                Html Code
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link " id="vTextJs-tab" data-toggle="tab" href="#vTextJsCard" role="tab"
+                                               aria-controls="vTextJsCard" aria-selected="true">
+                                                Java Script Code
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </div>
-                                <div class="card-body bg-dark text-white">
-                                    <pre><code class="text-white">
+                                <div class="tab-content" id="nav-tabTextContent">
+                                    <div class="card-body tab-pane fade show active" id="vTextDemoCard" role="tabpanel" aria-labelledby="vTextDemoCard-tab">
+                                        <div class="col-sm-12 col-md-12 col-lg-8 form-group row">
+                                            <label for="vTextDemo" class="col-sm-4 col-form-label">輸入文字:</label>
+                                            <div class="col-sm-8">
+                                                <input id="vTextDemo" class="form-control" v-model="vTextDemo" type="text"
+                                                       placeholder="Enter Word To Show" />
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <h6>Show Message in { } : <span class="text-danger">{{vTextDemo}}</span></h6>
+                                        <h6>Show Message in v-text : <span class="text-danger" v-text="vTextDemo"></span></h6>
+
+                                    </div>
+
+                                    <div class="card-body tab-pane fade   bg-dark text-white" id="vTextHtmlCard" role="tabpanel" aria-labelledby="vTextHtmlCard-tab">
+                                        <pre><code class="text-white">
     &lt;div class="form-group row"&gt;
         &lt;label for="vTextDemo" class="col-sm-3 col-form-label"&gt;輸入文字:&lt;/label&gt;
         &lt;div class="col-sm-9"&gt;
@@ -77,159 +99,206 @@
     &lt;/div&gt;
     &lt;h5&gt;Show Message in { }    : &lt;span class="text-danger"&gt; <span class="text-info">｛｛vTextDemo｝｝ </span>&lt;/span&gt;&lt;/h5&gt;
     &lt;h5&gt;Show Message in v-text : &lt;span class="text-danger" <span class="text-info">v-model="vTextDemo" </span>&gt;&lt;/span&gt;&lt;/h5&gt;
-</code></pre>
-                                </div>
-                            </div>
-                            <div class="card m-2">
-                                <div class="card-header">
-                                    <h5>JS Code</h5>
-                                </div>
-                                <div class="card-body bg-dark text-white">
-                                    <pre><code class="text-white">
+                                        </code></pre>
+                                    </div>
+                                    <div class="card-body tab-pane fade bg-dark text-white" id="vTextJsCard" role="tabpanel" aria-labelledby="vTextJsCard-tab">
+                                        <pre><code class="text-white">
     &lt;script&gt;
         const app = {
             data() {
                 return {
-                    vTextDemo: "",
+                      vTextDemo: "",
                 }
             }
         }
         
         Vue.createApp(app).mount("#app");
     &lt;/script&gt;
-</code></pre>
+                                        </code></pre>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <!-- CHAPTER 01 End ============================================================================================================= -->
                         <!-- CHAPTER 02 Start =========================================================================================================== -->
                         <div id="chapter2" v-show="showChapter(1)">
-                            <h4 class="text-primary"># {{chapterTextArray[1]}}</h4>
-                            <p class="text-dark">
-                                渲染 HTML
-                            </p>
-                            <div class="card m-2">
-                                <div class="card-header">
-                                    <h5>Demo</h5>
-                                </div>
+                            <h4 class="font-weight-bold"># {{chapterTextArray[1]}}</h4>
+                            <div class="card m-3">
                                 <div class="card-body">
-                                    <div class="col-sm-12 col-md-12 col-lg-12 form-group row">
-                                        <label for="vHtmlDemo" class="col-sm-2 col-form-label">輸入HTML:</label>
-                                        <div class="col-sm-10">
-                                            <input id="vHtmlDemo" class="form-control" v-model="vHtmlDemo" type="text" />
-                                        </div>
-                                    </div>
-                                    <h5>Show Message in v-html : <span class="text-danger" v-html="vHtmlDemo">{{vHtmlDemo}}</span></h5>
+                                    <h6 class="font-weight-bold">單純渲染文字</h6>
+                                    <p>
+                                        渲染文字有兩中方是,一種是直接用雙大括弧呼叫參數,另一種則是加上 v-text。差異在大括弧在 js 執行失敗時會出現大括弧與裡面的JS。
+                                    </p>
                                 </div>
                             </div>
-                            <div class="card m-2">
+                            <div class="card m-3">
                                 <div class="card-header">
-                                    <h5>HTML Code</h5>
+                                    <ul class="nav nav-tabs card-header-tabs">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="vHtmlDemo-tab" data-toggle="tab" href="#vHtmlDemoCard" role="tab"
+                                               aria-controls="vHtmlDemoCard" aria-selected="true">
+                                                Demo
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link " id="vHtmlHtml-tab" data-toggle="tab" href="#vHtmlHtmlCard" role="tab"
+                                               aria-controls="vHtmlHtmlCard" aria-selected="true">
+                                                Html Code
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link " id="vHtmlJs-tab" data-toggle="tab" href="#vHtmlJsCard" role="tab"
+                                               aria-controls="vHtmlJsCard" aria-selected="true">
+                                                Java Script Code
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </div>
-                                <div class="card-body bg-dark text-white">
-                                    <pre><code class="text-white">
+                                <div class="tab-content" id="nav-tabHtmlContent">
+                                    <div class="card-body tab-pane fade show active" id="vHtmlDemoCard" role="tabpanel" aria-labelledby="vHtmlDemoCard-tab">
+                                        <!--Demo Code-->
+                                        <div class="col-sm-12 col-md-12 col-lg-12 form-group row">
+                                            <label for="vHtmlDemo" class="col-sm-2 col-form-label">輸入HTML:</label>
+                                            <div class="col-sm-10">
+                                                <input id="vHtmlDemo" class="form-control" v-model="vHtmlDemo" type="text" />
+                                            </div>
+                                        </div>
+                                        <h5>Show Message in v-html : <span class="text-danger" v-html="vHtmlDemo">{{vHtmlDemo}}</span></h5>
+
+                                    </div>
+
+                                    <div class="card-body tab-pane fade   bg-dark text-white" id="vHtmlHtmlCard" role="tabpanel" aria-labelledby="vHtmlHtmlCard-tab">
+                                        <!--HTML Code-->
+                                        <pre><code class="text-white">
     &lt;div class="form-group row"&gt;
-        &lt;label for="vTextDemo" class="col-sm-3 col-form-label"&gt;輸入HTML:&lt;/label&gt;
+        &lt;label for="vHtmHtml;輸入HTML:&lt;/label&gt;
         &lt;div class="col-sm-9"&gt;
-            &lt;input id="vTextDemo" class="form-control" <span class="text-info">v-model="vHtmlDemo" </span> type="text" /&gt;
+            &lt;input id="vHtmlDemo" class="form-control" <span class="text-info">v-model="vHtmlDemo" </span> type="text" /&gt;
         &lt;/div&gt;
     &lt;/div&gt;
     &lt;h5&gt;Show Message in v-html : &lt;span class="text-danger" <span class="text-info">v-model="vHtmlDemo" </span>&gt;&lt;/span&gt;&lt;/h5&gt;
-</code></pre>
-                                </div>
-                            </div>
-                            <div class="card m-2">
-                                <div class="card-header">
-                                    <h5>JS Code</h5>
-                                </div>
-                                <div class="card-body bg-dark text-white">
-                                    <pre><code class="text-white">
+                                        </code></pre>
+                                    </div>
+                                    <div class="card-body tab-pane fade bg-dark text-white" id="vHtmlJsCard" role="tabpanel" aria-labelledby="vTextJsCard-tab">
+                                        <!--JS Code-->
+                                        <pre><code class="text-white">
     &lt;script&gt;
         const app = {
             data() {
                 return {
-                     vHtmlDemo: "&lt;span style='color:blue'&gt;123&lt;/span&gt;",
+                     vHtmlDemo: "&lt;span style='color:blue'&gt;測試文字&lt;/span&gt;",
                 }
             }
         }
         
         Vue.createApp(app).mount("#app");
     &lt;/script&gt;
-</code></pre>
+                                        </code></pre>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
                         <!-- CHAPTER 02 End ============================================================================================================= -->
                         <!-- CHAPTER 03 Start =========================================================================================================== -->
 
                         <div id="chapter3" v-show="showChapter(2)">
-                            <h4 class="text-primary"># {{chapterTextArray[2]}}</h4>
-                            <p class="text-dark">
-                                判斷是否顯示,show 只會修改 <mark>disabled</mark> 狀態,if else 則是改變<mark>Dom</mark> ,<strong>若要經常性變化請使用 show .</strong><br />
-                                判斷狀態石可在v-show="(<span class="text-warning">JavaScript</span>)"
-                                中寫入簡單的<span class="text-warning">JavaScript</span>,
-                                ex. <span class="text-info">v-show="1===1"</span><br />
-                                或是有布林值的 data 等等.
-                            </p>
-                            <div class="card m-2">
-                                <div class="card-header">
-                                    <h5>Demo</h5>
-                                </div>
+                            <h4 class="font-weight-bold"># {{chapterTextArray[2]}}</h4>
+                            <div class="card m-3">
                                 <div class="card-body">
-                                    <div class="col-sm-12 col-md-12 col-lg-12 form-group row">
-                                        <label for="vHtmlDemo" class=" col-form-label">Click Button To Switch if else :</label>
-                                        <div class="ml-2">
-                                            <input type="button" class="btn btn-primary" v-on:click="vIfDemo=!vIfDemo" value="Click Me" />
-                                        </div>
-                                    </div>
-                                    <h5>Show Message in v-html : <span class="text-danger" v-html="vHtmlDemo">{{vHtmlDemo}}</span></h5>
+                                    <h6 class="font-weight-bold">判斷顯示</h6>
+                                    <p>
+                                        判斷是否顯示,show 只會修改 <mark>disabled</mark> 狀態,if else 則是改變<mark>Dom</mark> ,<strong>若要經常性變化請使用 show .</strong><br />
+                                        判斷狀態石可在v-show="(<span class="text-warning">JavaScript</span>)"
+                                        中寫入簡單的<span class="text-warning">JavaScript</span>,
+                                        ex. <span class="text-info">v-show="1===1"</span><br />
+                                        或是有布林值的 data 等等.
+                                    </p>
                                 </div>
                             </div>
-                            <div class="card m-2">
+                            <div class="card m-3">
                                 <div class="card-header">
-                                    <h5>HTML Code</h5>
+                                    <ul class="nav nav-tabs card-header-tabs">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="vIfDemo-tab" data-toggle="tab" href="#vIfDemoCard" role="tab"
+                                               aria-controls="vHtmlDemoCard" aria-selected="true">
+                                                Demo
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link " id="vIfHtml-tab" data-toggle="tab" href="#vIfHtmlCard" role="tab"
+                                               aria-controls="vIfHtmlCard" aria-selected="true">
+                                                Html Code
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link " id="vIfJs-tab" data-toggle="tab" href="#vIfJsCard" role="tab"
+                                               aria-controls="vIfJsCard" aria-selected="true">
+                                                Java Script Code
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </div>
-                                <div class="card-body bg-dark text-white">
+                                <div class="tab-content" id="nav-tabIfContent">
+                                    <div class="card-body tab-pane fade show active" id="vIfDemoCard" role="tabpanel" aria-labelledby="vIfDemoCard-tab">
+                                        <!--Demo Code-->
+                                        <div class="col-sm-12 col-md-12 col-lg-12 form-group row">
+                                            <div class="m-3">
+                                                <input id="vIfDemo" class="form-control btn btn-primary" value="SwitchIf" type="button"
+                                                       v-on:click="vIfDemo = !vIfDemo" />
+                                            </div>
+                                        </div>
+                                        <h5 v-if="vIfDemo">v-if Show Time</h5>
+                                        <h5 v-else="vIfDemo">v-else Show Time</h5>
+                                        <h5 v-show="vIfDemo">v-show Show Time</h5>
+                                    </div>
+                                
+                                <div class="card-body tab-pane fade   bg-dark text-white" id="vIfHtmlCard" role="tabpanel" aria-labelledby="vIfHtmlCard-tab">
+                                    <!--HTML Code-->
                                     <pre><code class="text-white">
-    &lt;div class="form-group row"&gt;
-        &lt;label for="vTextDemo" class="col-sm-3 col-form-label"&gt;輸入HTML:&lt;/label&gt;
-        &lt;div class="col-sm-9"&gt;
-            &lt;input id="vTextDemo" class="form-control" <span class="text-info">v-model="vHtmlDemo" </span> type="text" /&gt;
+    &lt;div class="col-sm-12 col-md-12 col-lg-12 form-group row"&gt;
+        &lt;div class="m-3"&gt;
+            &lt;input id="vIfDemo" class="form-control btn btn-primary" value="SwitchIf" type="button"
+                   v-on:click="vIfDemo = !vIfDemo" /&gt;
         &lt;/div&gt;
     &lt;/div&gt;
-    &lt;h5&gt;Show Message in v-html : &lt;span class="text-danger" <span class="text-info">v-model="vHtmlDemo" </span>&gt;&lt;/span&gt;&lt;/h5&gt;
+    &lt;h5 v-if="vIfDemo"&gt;v-if Show Time&lt;/h5&gt;
+    &lt;h5 v-else="vIfDemo"&gt;v-else Show Time&lt;/h5&gt;
+    &lt;h5 v-show="vIfDemo"&gt;v-show Show Time&lt;/h5&gt;
 </code></pre>
                                 </div>
-                            </div>
-                            <div class="card m-2">
-                                <div class="card-header">
-                                    <h5>JS Code</h5>
-                                </div>
-                                <div class="card-body bg-dark text-white">
+                                <div class="card-body tab-pane fade bg-dark text-white" id="vIfJsCard" role="tabpanel" aria-labelledby="vTextJsCard-tab">
+                                    <!--JS Code-->
                                     <pre><code class="text-white">
     &lt;script&gt;
-        const app = {
+       const app = {
             data() {
                 return {
-                     vHtmlDemo: "&lt;span style='color:blue'&gt;123&lt;/span&gt;",
+                    vIfDemo: true,
+                }
+            },
+            methods: {
+                showChapter: function (index) {
+                    return this.chapter === index;
                 }
             }
         }
         
         Vue.createApp(app).mount("#app");
     &lt;/script&gt;
-</code></pre>
+                                        </code></pre>
                                 </div>
                             </div>
                         </div>
-                        <!-- CHAPTER 03 End ============================================================================================================= -->
-                        <!-- CHAPTER 04 Start =========================================================================================================== -->
-
                     </div>
+                    <!-- CHAPTER 03 End ============================================================================================================= -->
+                    <!-- CHAPTER 04 Start =========================================================================================================== -->
 
                 </div>
+
             </div>
-        </main>
+    </div>
+    </main>
     </div>
 
     <footer class="border-top footer text-muted">
@@ -247,9 +316,10 @@
             data() {
                 return {
                     chapter: 0,
-                    chapterTextArray: ["V-TEXT", "V-HTML", "V-SHOW IF ELSE", "V-FOR", "V-ON", "V-BIND", "V-MODEL", "V-PRE", "V-SELF"],
+                    chapterTextArray: ["v-text", "v-html", "v-show if else", "v-for", "v-on", "v-bind", "v-model", "v-pre", "v-self"],
                     vTextDemo: "",
-                    vHtmlDemo: "<span style='color:blue'>123</span>",
+                    vHtmlDemo: "<span style='color:blue'>測試文字</span>",
+                    vIfDemo: true
 
                 }
             },
