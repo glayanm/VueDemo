@@ -1,0 +1,266 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VueDemo</title>
+    <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/site.css" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-page="/Index">
+                    Vue Directive Demo
+                    <span class="text-success">
+                        (3.0)
+                    </span>
+                </a>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+
+            <div id="app">
+                <div class="row">
+
+                    <div class="col-md-3 col-lg-2 col-sm-4 border-right h-100">
+                        <div class="navbar-nav">
+                            <a class="text-dark nav-link font-weight-bold" href="#">Directives</a>
+                        </div>
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class=" nav-item border-bottom"
+                                v-for="(chapterText,index) in chapterTextArray" Key:index
+                                v-on:click="chapter = index">
+                                <a class="text-dark nav-link" href="#"
+                                   v-on:click="chapter = index">{{chapterText}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-9 col-lg-10 col-sm-8 ">
+                        <!-- CHAPTER 01 Start =========================================================================================================== -->
+                        <div id="chapter1" v-show="showChapter(0)">
+                            <h4 class="text-primary font-weight-bold"># {{chapterTextArray[0]}}</h4>
+                            <p class="text-dark">
+                                單純渲染文字
+                            </p>
+                            <div class="card m-2">
+                                <div class="card-header">
+                                    <h5>Demo</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="col-sm-12 col-md-12 col-lg-8 form-group row">
+                                        <label for="vTextDemo" class="col-sm-4 col-form-label">輸入文字:</label>
+                                        <div class="col-sm-8">
+                                            <input id="vTextDemo" class="form-control" v-model="vTextDemo" type="text"
+                                                   placeholder="Enter Word To Show" />
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <h6>Show Message in { } : <span class="text-danger">{{vTextDemo}}</span></h6>
+                                    <h6>Show Message in v-text : <span class="text-danger" v-text="vTextDemo"></span></h6>
+                                </div>
+                            </div>
+                            <div class="card m-2">
+                                <div class="card-header">
+                                    <h5>HTML Code</h5>
+                                </div>
+                                <div class="card-body bg-dark text-white">
+                                    <pre><code class="text-white">
+    &lt;div class="form-group row"&gt;
+        &lt;label for="vTextDemo" class="col-sm-3 col-form-label"&gt;輸入文字:&lt;/label&gt;
+        &lt;div class="col-sm-9"&gt;
+            &lt;input id="vTextDemo" class="form-control" <span class="text-info">v-model="vTextDemo" </span> type="text" /&gt
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;h5&gt;Show Message in { }    : &lt;span class="text-danger"&gt; <span class="text-info">｛｛vTextDemo｝｝ </span>&lt;/span&gt;&lt;/h5&gt;
+    &lt;h5&gt;Show Message in v-text : &lt;span class="text-danger" <span class="text-info">v-model="vTextDemo" </span>&gt;&lt;/span&gt;&lt;/h5&gt;
+</code></pre>
+                                </div>
+                            </div>
+                            <div class="card m-2">
+                                <div class="card-header">
+                                    <h5>JS Code</h5>
+                                </div>
+                                <div class="card-body bg-dark text-white">
+                                    <pre><code class="text-white">
+    &lt;script&gt;
+        const app = {
+            data() {
+                return {
+                    vTextDemo: "",
+                }
+            }
+        }
+        
+        Vue.createApp(app).mount("#app");
+    &lt;/script&gt;
+</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- CHAPTER 01 End ============================================================================================================= -->
+                        <!-- CHAPTER 02 Start =========================================================================================================== -->
+                        <div id="chapter2" v-show="showChapter(1)">
+                            <h4 class="text-primary"># {{chapterTextArray[1]}}</h4>
+                            <p class="text-dark">
+                                渲染 HTML
+                            </p>
+                            <div class="card m-2">
+                                <div class="card-header">
+                                    <h5>Demo</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="col-sm-12 col-md-12 col-lg-12 form-group row">
+                                        <label for="vHtmlDemo" class="col-sm-2 col-form-label">輸入HTML:</label>
+                                        <div class="col-sm-10">
+                                            <input id="vHtmlDemo" class="form-control" v-model="vHtmlDemo" type="text" />
+                                        </div>
+                                    </div>
+                                    <h5>Show Message in v-html : <span class="text-danger" v-html="vHtmlDemo">{{vHtmlDemo}}</span></h5>
+                                </div>
+                            </div>
+                            <div class="card m-2">
+                                <div class="card-header">
+                                    <h5>HTML Code</h5>
+                                </div>
+                                <div class="card-body bg-dark text-white">
+                                    <pre><code class="text-white">
+    &lt;div class="form-group row"&gt;
+        &lt;label for="vTextDemo" class="col-sm-3 col-form-label"&gt;輸入HTML:&lt;/label&gt;
+        &lt;div class="col-sm-9"&gt;
+            &lt;input id="vTextDemo" class="form-control" <span class="text-info">v-model="vHtmlDemo" </span> type="text" /&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;h5&gt;Show Message in v-html : &lt;span class="text-danger" <span class="text-info">v-model="vHtmlDemo" </span>&gt;&lt;/span&gt;&lt;/h5&gt;
+</code></pre>
+                                </div>
+                            </div>
+                            <div class="card m-2">
+                                <div class="card-header">
+                                    <h5>JS Code</h5>
+                                </div>
+                                <div class="card-body bg-dark text-white">
+                                    <pre><code class="text-white">
+    &lt;script&gt;
+        const app = {
+            data() {
+                return {
+                     vHtmlDemo: "&lt;span style='color:blue'&gt;123&lt;/span&gt;",
+                }
+            }
+        }
+        
+        Vue.createApp(app).mount("#app");
+    &lt;/script&gt;
+</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- CHAPTER 02 End ============================================================================================================= -->
+                        <!-- CHAPTER 03 Start =========================================================================================================== -->
+
+                        <div id="chapter3" v-show="showChapter(2)">
+                            <h4 class="text-primary"># {{chapterTextArray[2]}}</h4>
+                            <p class="text-dark">
+                                判斷是否顯示,show 只會修改 <mark>disabled</mark> 狀態,if else 則是改變<mark>Dom</mark> ,<strong>若要經常性變化請使用 show .</strong><br />
+                                判斷狀態石可在v-show="(<span class="text-warning">JavaScript</span>)"
+                                中寫入簡單的<span class="text-warning">JavaScript</span>,
+                                ex. <span class="text-info">v-show="1===1"</span><br />
+                                或是有布林值的 data 等等.
+                            </p>
+                            <div class="card m-2">
+                                <div class="card-header">
+                                    <h5>Demo</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="col-sm-12 col-md-12 col-lg-12 form-group row">
+                                        <label for="vHtmlDemo" class=" col-form-label">Click Button To Switch if else :</label>
+                                        <div class="ml-2">
+                                            <input type="button" class="btn btn-primary" v-on:click="vIfDemo=!vIfDemo" value="Click Me" />
+                                        </div>
+                                    </div>
+                                    <h5>Show Message in v-html : <span class="text-danger" v-html="vHtmlDemo">{{vHtmlDemo}}</span></h5>
+                                </div>
+                            </div>
+                            <div class="card m-2">
+                                <div class="card-header">
+                                    <h5>HTML Code</h5>
+                                </div>
+                                <div class="card-body bg-dark text-white">
+                                    <pre><code class="text-white">
+    &lt;div class="form-group row"&gt;
+        &lt;label for="vTextDemo" class="col-sm-3 col-form-label"&gt;輸入HTML:&lt;/label&gt;
+        &lt;div class="col-sm-9"&gt;
+            &lt;input id="vTextDemo" class="form-control" <span class="text-info">v-model="vHtmlDemo" </span> type="text" /&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;h5&gt;Show Message in v-html : &lt;span class="text-danger" <span class="text-info">v-model="vHtmlDemo" </span>&gt;&lt;/span&gt;&lt;/h5&gt;
+</code></pre>
+                                </div>
+                            </div>
+                            <div class="card m-2">
+                                <div class="card-header">
+                                    <h5>JS Code</h5>
+                                </div>
+                                <div class="card-body bg-dark text-white">
+                                    <pre><code class="text-white">
+    &lt;script&gt;
+        const app = {
+            data() {
+                return {
+                     vHtmlDemo: "&lt;span style='color:blue'&gt;123&lt;/span&gt;",
+                }
+            }
+        }
+        
+        Vue.createApp(app).mount("#app");
+    &lt;/script&gt;
+</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- CHAPTER 03 End ============================================================================================================= -->
+                        <!-- CHAPTER 04 Start =========================================================================================================== -->
+
+                    </div>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2020 - VueDemo - <a asp-area="" asp-page="/Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <script src="lib/jquery/dist/jquery.min.js"></script>
+    <script src="lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/site.js"></script>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        const app = {
+            data() {
+                return {
+                    chapter: 0,
+                    chapterTextArray: ["V-TEXT", "V-HTML", "V-SHOW IF ELSE", "V-FOR", "V-ON", "V-BIND", "V-MODEL", "V-PRE", "V-SELF"],
+                    vTextDemo: "",
+                    vHtmlDemo: "<span style='color:blue'>123</span>",
+
+                }
+            },
+            methods: {
+                showChapter: function (index) {
+                    return this.chapter === index;
+                }
+            }
+        }
+
+        Vue.createApp(app).mount("#app");
+    </script>
+</body>
+</html>
